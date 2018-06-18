@@ -1,12 +1,17 @@
 import random
 import string
 
+def open_file(fileName):
+    """ Opens and processes text file."""
+    in_file = open(fileName)
+    processedFile = in_file.read().rstrip('\n').split()
+    return processedFile
+    
 def markov_map(fileName):
     markovMap = {}
-    textString = open(fileName).read()
-    strippables = string.whitespace #+ string.punctuation
-    textList = textString.split()
+    textList = open_file(fileName)
     processed = []
+    strippables = string.whitespace
 
     for word in textList:
         word = word.strip(strippables)
