@@ -4,7 +4,6 @@ import string
 def open_file(fileName):
     """ Opens and processes text file."""
     in_file = open(fileName)
-    # 
     processedFile = in_file.read().strip('\n').split()
     return processedFile
     
@@ -13,17 +12,16 @@ def process_words(wordList):
     strippables = string.whitespace
     processed = []
 
+    # Strip whitespace from each word and return new list of processed words.
     for word in wordList:
         word = word.strip(strippables)
         processed.append(word)
-    print(processed)
     return processed
 
 def markov_map(fileName):
     markovMap = {}
     textList = open_file(fileName)
     processed = process_words(textList)
-    print(processed)
 
     count = 0
     prefixLength = 2
@@ -47,7 +45,6 @@ def markov_map(fileName):
 
         count += 1
         
-    print(markovMap)
     #for key in markovMap:
         #print(key, markovMap[key])
     return markovMap
