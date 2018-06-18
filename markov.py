@@ -75,14 +75,6 @@ def random_text(markovMap, n = 10):
         key = tuple(nextPart)
 
 markovMap = markov_map('bee.txt')
-<<<<<<< HEAD
-random_text(markovMap)
 
-||||||| merged common ancestors
-randomStory = random_text(markovMap)
-print(randomStory)
-
-=======
 randomStory = random_text(markovMap)
 remove_guten_header(open('emma.txt'))
->>>>>>> AddHeaderRemoval
