@@ -4,7 +4,8 @@ import string
 def open_file(fileName):
     """ Opens and processes text file."""
     in_file = open(fileName)
-    processedFile = in_file.read().rstrip('\n').split()
+    # 
+    processedFile = in_file.read().strip('\n').split()
     return processedFile
     
 def markov_map(fileName):
