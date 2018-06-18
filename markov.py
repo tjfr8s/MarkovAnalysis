@@ -41,7 +41,14 @@ def markov_map(fileName):
     return markovMap
 
 
-def random_text(markovMap, n = 100):
+def remove_guten_header(in_file):
+    """ Reads to the end of the file's gutenberg header."""
+
+    for line in in_file:
+        if line.startswith("*END*THE SMALL PRINT!"):
+            break
+
+def random_text(markovMap, n = 10):
     #print(markovMap)
     keys = list(markovMap)
     # Choose initial random key and add it to the story.
@@ -68,5 +75,14 @@ def random_text(markovMap, n = 100):
         key = tuple(nextPart)
 
 markovMap = markov_map('bee.txt')
+<<<<<<< HEAD
 random_text(markovMap)
 
+||||||| merged common ancestors
+randomStory = random_text(markovMap)
+print(randomStory)
+
+=======
+randomStory = random_text(markovMap)
+remove_guten_header(open('emma.txt'))
+>>>>>>> AddHeaderRemoval
