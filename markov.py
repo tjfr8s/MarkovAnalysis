@@ -41,7 +41,7 @@ def markov_map(fileName):
     return markovMap
 
 
-def random_text(markovMap, n = 10):
+def random_text(markovMap, n = 100):
     #print(markovMap)
     keys = list(markovMap)
     # Choose initial random key and add it to the story.
@@ -52,7 +52,7 @@ def random_text(markovMap, n = 10):
         # Find possible suffixes.
         suffixes = markovMap.get(key, None)
         if suffixes == None:
-            random_text(markovMap,n-1)
+            random_text(markovMap,n-number)
             return
 
         # Choose random suffix.
@@ -60,16 +60,13 @@ def random_text(markovMap, n = 10):
         nextPart = list(key)
 
         # Add suffix to story.
-        story = story + ' '+ suffix
+        print(suffix, end=' ')
 
         # Generate next key.
         nextPart.append(suffix)
         del nextPart[0]
         key = tuple(nextPart)
-    
-  # need to determine next key from current story 
 
 markovMap = markov_map('bee.txt')
-randomStory = random_text(markovMap)
-print(randomStory)
+random_text(markovMap)
 
