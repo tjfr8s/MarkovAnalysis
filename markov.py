@@ -1,9 +1,11 @@
 import random
 import string
 
-def open_file(fileName):
+def open_file(fileName, isEbook):
     """ Opens and processes text file."""
     in_file = open(fileName)
+    if isEbook:
+        remove_guten_header(in_file)
     processedFile = in_file.read().strip('\n').split()
     return processedFile
     
@@ -18,9 +20,9 @@ def process_words(wordList):
         processed.append(word)
     return processed
 
-def markov_map(fileName):
+def markov_map(fileName, isEbook = False):
     markovMap = {}
-    textList = open_file(fileName)
+    textList = open_file(fileName, isEbook)
     processed = process_words(textList)
 
     count = 0
@@ -83,7 +85,6 @@ def random_text(markovMap, n = 10):
         del nextPart[0]
         key = tuple(nextPart)
 
-markovMap = markov_map('bee.txt')
+markovMap = markov_map('emma.txt', isEbook = True)
 
-randomStory = random_text(markovMap)
-remove_guten_header(open('emma.txt'))
+randomStory = random_text(markovMap, 100)
