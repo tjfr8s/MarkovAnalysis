@@ -53,6 +53,13 @@ def markov_map(fileName):
     return markovMap
 
 
+def remove_guten_header(in_file):
+    """ Reads to the end of the file's gutenberg header."""
+
+    for line in in_file:
+        if line.startswith("*END*THE SMALL PRINT!"):
+            break
+
 def random_text(markovMap, n = 10):
     #print(markovMap)
     keys = list(markovMap)
@@ -64,7 +71,7 @@ def random_text(markovMap, n = 10):
         # Find possible suffixes.
         suffixes = markovMap.get(key, None)
         if suffixes == None:
-            random_text(markovMap,n-1)
+            random_text(markovMap,n-number)
             return
 
         # Choose random suffix.
@@ -72,16 +79,14 @@ def random_text(markovMap, n = 10):
         nextPart = list(key)
 
         # Add suffix to story.
-        story = story + ' '+ suffix
+        print(suffix, end=' ')
 
         # Generate next key.
         nextPart.append(suffix)
         del nextPart[0]
         key = tuple(nextPart)
-    
-  # need to determine next key from current story 
 
 markovMap = markov_map('bee.txt')
-randomStory = random_text(markovMap)
-print(randomStory)
 
+randomStory = random_text(markovMap)
+remove_guten_header(open('emma.txt'))
